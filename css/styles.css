@@ -1620,7 +1620,7 @@ footer .container {
   .before-after-table .cell.before {
     order: 2;
   }
-  .before-after-table .table-header:last-child {
+  .before-after-table .table-header:nth-child(2) {
     order: 3;
   }
   .before-after-table .cell.after {
