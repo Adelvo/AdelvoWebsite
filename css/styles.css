@@ -1614,6 +1614,18 @@ footer .container {
     grid-template-columns: 1fr;
     margin: var(--spacing-xl) auto;
   }
+  .before-after-table .table-header:first-child {
+    order: 1;
+  }
+  .before-after-table .cell.before {
+    order: 2;
+  }
+  .before-after-table .table-header:last-child {
+    order: 3;
+  }
+  .before-after-table .cell.after {
+    order: 4;
+  }
   .before-after-table .table-header {
     padding: var(--spacing-md);
     font-size: var(--font-size-small);
@@ -1625,6 +1637,10 @@ footer .container {
   .before-after-table .contentRow {
     width: 240px;
     gap: 12px;
+  }
+
+  .about-flow {
+    grid-template-columns: 1fr;
   }
   
   .who-grid {
