@@ -655,6 +655,10 @@ spline-viewer {
 }
 
 @media (max-width: 768px) {
+  .hero-spline {
+    display: none;
+  }
+
   .spline-bg {
     display: none;
   }
