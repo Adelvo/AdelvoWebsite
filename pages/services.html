@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Automation Services for Sales & Operations - Adelvo Agency">
+  <title>Services - Adelvo Agency</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .services-page {
+      background: #000000;
+      color: #FFFFFF;
+    }
+    .services-page .section {
+      padding: clamp(3rem, 6vw, 5rem) 0;
+    }
+    .services-hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 5vw, 3.5rem);
+      align-items: center;
+      justify-items: stretch;
+      max-width: 1180px;
+      max-height: 80vh;
+      margin: 0 auto;
+      background: #000000;
+    }
+    .services-hero-text {
+      max-width: 640px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      justify-self: start;
+      text-align: left;
+      background: #000000;
+    }
+    .services-hero h1 {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    .services-hero p {
+      color: #CBD5E1;
+      font-size: 1.1rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+    .services-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.65rem;
+    }
+    .services-bullets li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #E2E8F0;
+      font-size: 1rem;
+    }
+    .services-bullets li::before {
+      content: "";
+      width: 0.7rem;
+      height: 0.7rem;
+      border-radius: 50%;
+      background: var(--color-accent);
+      flex-shrink: 0;
+    }
+    .services-cta {
+      display: inline-block;
+      align-self: flex-start;
+    }
+    .services-hero-visual {
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000000;
+    }
+    .spline-embed {
+      width: clamp(320px, 48vw, 640px);
+      height: clamp(260px, 38vw, 460px);
+      margin: 0 auto;
+      aspect-ratio: 16 / 10;
+      border-radius: 0.85rem;
+      overflow: hidden;
+      border: none;
+      background: #000000;
+      box-shadow: none;
+    }
+    .spline-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: transparent;
+      border-radius: 0.6rem;
+    }
+    .services-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1.5rem, 3vw, 2rem);
+    }
+    .services-card {
+      background: #0b0f19;
+      border: 1px solid rgba(102, 252, 241, 0.15);
+      border-radius: 0.75rem;
+      padding: clamp(1.75rem, 3vw, 2.25rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .services-card--featured {
+      border-color: rgba(102, 252, 241, 0.35);
+      box-shadow: 0 0 0 1px rgba(102, 252, 241, 0.12);
+      position: relative;
+    }
+    .service-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(102, 252, 241, 0.12);
+      color: var(--color-accent);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      width: fit-content;
+    }
+    .service-subline {
+      color: #9FB3C8;
+      font-size: 0.95rem;
+      margin: -0.25rem 0 0.25rem 0;
+    }
+    .services-card h3 {
+      color: #FFFFFF;
+      font-size: 1.4rem;
+      margin: 0;
+    }
+    .services-card p {
+      color: #CBD5E1;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .services-card .includes-title {
+      color: var(--color-accent);
+      font-weight: 700;
+      margin-top: 0.5rem;
+    }
+    .services-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.4rem;
+      color: #E2E8F0;
+      line-height: 1.5;
+    }
+    .services-card ul li::before {
+      content: "–";
+      color: var(--color-accent);
+      margin-right: 0.35rem;
+    }
+    .service-offer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1.25rem, 3vw, 1.75rem);
+    }
+    .service-offer-card {
+      background: radial-gradient(circle at 10% 10%, rgba(102, 252, 241, 0.08), rgba(102, 252, 241, 0.02) 38%), #0b0f19;
+      border: 1px solid rgba(102, 252, 241, 0.16);
+      border-radius: 0.9rem;
+      padding: clamp(1.75rem, 3vw, 2.25rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+    }
+    .service-offer-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(130deg, rgba(102, 252, 241, 0.12), rgba(69, 162, 158, 0.08));
+      opacity: 0;
+      transition: opacity 200ms ease;
+      pointer-events: none;
+    }
+    .service-offer-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(102, 252, 241, 0.3);
+      box-shadow: 0 12px 42px rgba(0, 0, 0, 0.45);
+    }
+    .service-offer-card:hover::after {
+      opacity: 1;
+    }
+    .offer-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .service-offer-card h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      color: #ffffff;
+      letter-spacing: 0.01em;
+    }
+    .offer-block {
+      display: grid;
+      gap: 0.35rem;
+    }
+    .offer-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--color-accent);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .offer-block p {
+      margin: 0;
+      color: #CBD5E1;
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(1.25rem, 3vw, 1.75rem);
+    }
+    .process-card {
+      background: #0b0f19;
+      border: 1px solid rgba(102, 252, 241, 0.15);
+      border-radius: 0.75rem;
+      padding: clamp(1.5rem, 3vw, 1.75rem);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      min-height: 100%;
+    }
+    .process-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--color-accent);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+    }
+    .process-card h3 {
+      color: #FFFFFF;
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    .process-card p {
+      color: #CBD5E1;
+      margin: 0;
+      line-height: 1.6;
+      font-size: 0.98rem;
+    }
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(1.25rem, 3vw, 1.75rem);
+    }
+    .audience-card {
+      background: #0b0f19;
+      border: 1px solid rgba(102, 252, 241, 0.15);
+      border-radius: 0.75rem;
+      padding: clamp(1.5rem, 3vw, 1.75rem);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      min-height: 100%;
+    }
+    .audience-card h3 {
+      margin: 0;
+      color: #FFFFFF;
+      font-size: 1.2rem;
+    }
+    .audience-card p {
+      margin: 0;
+      color: #CBD5E1;
+      line-height: 1.6;
+    }
+    .industry-card {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at 12% 12%, rgba(102, 252, 241, 0.08), rgba(102, 252, 241, 0.02) 42%), #0b0f19;
+      border: 1px solid rgba(102, 252, 241, 0.18);
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+    .industry-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(102, 252, 241, 0.32);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+    }
+    .industry-card p {
+      margin-bottom: 0.35rem;
+    }
+    .industry-icon {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.85rem;
+      background: rgba(102, 252, 241, 0.12);
+      color: #d7fbf7;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .industry-points {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.35rem;
+      color: #E2E8F0;
+      line-height: 1.5;
+      font-size: 0.98rem;
+    }
+    .industry-points li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.4rem;
+      align-items: start;
+    }
+    .industry-points li::before {
+      content: "•";
+      color: var(--color-accent);
+      font-weight: 700;
+      line-height: 1;
+    }
+    .outcomes-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem 1.5rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: #E2E8F0;
+    }
+    .outcomes-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    .outcomes-list li::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid var(--color-accent);
+      flex-shrink: 0;
+    }
+    .final-cta {
+      text-align: center;
+      background: #0b0f19;
+      border: 1px solid rgba(102, 252, 241, 0.18);
+      border-radius: 0.9rem;
+      padding: clamp(2rem, 5vw, 2.75rem);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .final-cta h2 {
+      color: #FFFFFF;
+      margin-bottom: 0.75rem;
+      font-size: clamp(2rem, 5vw, 2.5rem);
+    }
+    .final-cta p {
+      color: #CBD5E1;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      font-size: 1.05rem;
+    }
+    .services-hero-block {
+      background: #000000;
+      padding-bottom: clamp(4rem, 7vw, 6rem);
+    }
+    @media (min-width: 960px) {
+      .services-hero {
+        grid-template-columns: 1.05fr 0.95fr;
+      }
+      .services-hero-text {
+        justify-self: start;
+        text-align: left;
+      }
+    }
+    @media (max-width: 900px) {
+      .services-hero {
+        grid-template-columns: 1fr;
+        text-align: left;
+        justify-items: center;
+        max-height: none;
+      }
+      .services-hero-text {
+        text-align: center;
+        align-items: center;
+        justify-self: center;
+      }
+      .services-cta {
+        align-self: center;
+      }
+      .spline-embed {
+        width: min(100%, 520px);
+        height: clamp(260px, 55vw, 320px);
+        aspect-ratio: 16 / 10;
+      }
+      .services-card-grid,
+      .service-offer-grid,
+      .process-steps,
+      .audience-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .outcomes-list {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 768px) {
+      .services-page .section {
+        padding: 2.5rem 0;
+      }
+      .services-hero h1 {
+        font-size: 2.2rem;
+      }
+      .services-hero p {
+        font-size: 1rem;
+      }
+      .services-card-grid,
+      .service-offer-grid,
+      .process-steps,
+      .audience-grid {
+        grid-template-columns: 1fr;
+      }
+      .services-card h3 {
+        font-size: 1.25rem;
+      }
+      .process-card h3 {
+        font-size: 1.1rem;
+      }
+      .process-card p {
+        font-size: 0.95rem;
+      }
+      .process-card {
+        padding: 1.5rem;
+      }
+      .final-cta {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body class="services-page">
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="../index.html" class="logo">Adelvo</a>
+        <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+        <nav>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="use-cases.html">Use Cases</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="book-a-call.html" class="btn btn-primary" style="margin: 0;">Book a Free Call</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="section services-hero-block">
+    <div class="container services-hero">
+      <div class="services-hero-text reveal reveal-left">
+        <h1>AI Automation Services for Sales &amp; Operations</h1>
+        <p>We design, build, and implement custom AI-powered systems that eliminate manual work and scale your business — without complexity.</p>
+        <ul class="services-bullets">
+          <li>Automate repetitive sales and admin tasks</li>
+          <li>Centralize tools, data, and workflows</li>
+          <li>Increase speed, accuracy, and visibility</li>
+        </ul>
+        <a href="book-a-call.html" class="btn btn-primary services-cta">Book a Free Automation Call</a>
+      </div>
+      <div class="services-hero-visual reveal reveal-scale">
+        <div class="spline-embed">
+          <iframe
+            src="https://my.spline.design/autolayoutcardscopycopy-2CEFHoRenweGgIZPDS7EOSbZ-6od/"
+            title="Automation Spline Scene"
+            loading="lazy"
+            allow="fullscreen"
+            allowtransparency="true"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="reveal" style="color: #FFFFFF; margin-bottom: 2rem;">Core Services</h2>
+      <div class="service-offer-grid">
+        <div class="service-offer-card reveal">
+          <div class="offer-header">
+            <h3>🧩 CRM Automation</h3>
+          </div>
+          <div class="offer-block">
+            <div class="offer-label">Problem</div>
+            <p>Leads sit in inboxes, reps update the CRM late, and pipeline data is wrong — so follow-ups are slow or missed.</p>
+          </div>
+          <div class="offer-block">
+            <div class="offer-label">Automation</div>
+            <p>Capture every lead from forms, chat, and email, auto-enrich, qualify, and route to the right rep; trigger sequences and calendar holds instantly.</p>
+          </div>
+          <div class="offer-block">
+            <div class="offer-label">Result</div>
+            <p>Faster first response, accurate pipeline, and a predictable handoff with no manual CRM clean-up.</p>
+          </div>
+        </div>
+
+        <div class="service-offer-card reveal">
+          <div class="offer-header">
+            <h3>✍️ Social Media Scripting</h3>
+          </div>
+          <div class="offer-block">
+            <div class="offer-label">Problem</div>
+            <p>Channels go quiet because writing, formatting, and scheduling content eats time; posts ship late or not at all.</p>
+          </div>
+          <div class="offer-block">
+            <div class="offer-label">Automation</div>
+            <p>Turn briefs into platform-ready scripts and captions, auto-generate variations, and schedule across channels with tracking baked in.</p>
+          </div>
+          <div class="offer-block">
+            <div class="offer-label">Result</div>
+            <p>Consistent output, faster publishing, and measurable engagement without manual scripting sprints.</p>
+          </div>
+        </div>
+
+        <div class="service-offer-card reveal">
+          <div class="offer-header">
+            <h3>📞 AI Phone Callers</h3>
+          </div>
+          <div class="offer-block">
+            <div class="offer-label">Problem</div>
+            <p>Inbound calls get missed and outbound follow-ups stall because humans can’t dial fast enough or 24/7.</p>
+          </div>
+          <div class="offer-block">
+            <div class="offer-label">Automation</div>
+            <p>AI callers qualify leads, book meetings, and escalate issues using your scripts, CRMs, and calendars — with live notes pushed back.</p>
+          </div>
+          <div class="offer-block">
+            <div class="offer-label">Result</div>
+            <p>Higher connect rates, more booked calls, and zero lag between interest and conversation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="reveal" style="color: #FFFFFF; margin-bottom: 2rem;">How Our Service Works</h2>
+      <div class="process-steps">
+        <div class="process-card reveal">
+          <div class="process-label">🔍 Week 1 — Process Audit</div>
+          <h3>Process Audit</h3>
+          <p>We analyze your sales and operations to identify high-impact automation opportunities.</p>
+        </div>
+        <div class="process-card reveal">
+          <div class="process-label">🧠 Week 2 — System Design</div>
+          <h3>System Design</h3>
+          <p>We design a custom automation blueprint tailored to your tools and workflows.</p>
+        </div>
+        <div class="process-card reveal">
+          <div class="process-label">🛠️ Week 3 — Build &amp; Integration</div>
+          <h3>Build &amp; Integration</h3>
+          <p>We implement automations and connect CRM, inbox, calendar, and internal systems.</p>
+        </div>
+        <div class="process-card reveal">
+          <div class="process-label">✅ Week 4 — Testing &amp; Optimization</div>
+          <h3>Testing &amp; Optimization</h3>
+          <p>We test, refine, and optimize everything until it runs reliably without manual work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="reveal" style="color: #FFFFFF; margin-bottom: 1.5rem;">Who This Is For</h2>
+      <div class="audience-grid">
+        <div class="audience-card industry-card reveal">
+          <div class="industry-icon">🛒</div>
+          <h3>E-Commerce</h3>
+          <p>High intent leads and orders pile up; support queues and follow-ups slow down repeat sales.</p>
+          <ul class="industry-points">
+            <li>Lead &amp; order data auto-synced to CRM and messaging.</li>
+            <li>Post-purchase follow-ups and win-back flows trigger without manual work.</li>
+            <li>Support triage → routing → status updates handled automatically.</li>
+          </ul>
+        </div>
+        <div class="audience-card industry-card reveal">
+          <div class="industry-icon">🏠</div>
+          <h3>Real Estate</h3>
+          <p>Portals send leads faster than teams can qualify; scheduling and CRM upkeep lag.</p>
+          <ul class="industry-points">
+            <li>Instant lead qualification, scoring, and routing from portal/inbound sources.</li>
+            <li>Auto-call or SMS to book viewings and confirmations directly to calendars.</li>
+            <li>CRM cleanup: notes, stage changes, and follow-ups logged without manual entry.</li>
+          </ul>
+        </div>
+        <div class="audience-card industry-card reveal">
+          <div class="industry-icon">🍽️</div>
+          <h3>Restaurants</h3>
+          <p>Calls and reservation requests get missed; no-shows hurt covers and teams stay on the phone.</p>
+          <ul class="industry-points">
+            <li>AI phone callers take reservations, answer FAQs, and capture intent 24/7.</li>
+            <li>Automated confirmations, reminders, and no-show reduction flows.</li>
+            <li>Special requests and changes routed to staff with live updates to booking systems.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section before-after-section">
+    <div class="container">
+      <h2 class="center-heading reveal">From Manual Work to Scalable Systems</h2>
+      
+      <div class="before-after-table reveal">
+        <div class="table-header">Before</div>
+        <div class="table-header">After</div>
+
+        <div class="cell before">
+          <div class="contentRow">
+            <div class="text">Manual processes</div>
+          </div>
+        </div>
+
+        <div class="cell after">
+          <div class="contentRow">
+            <span class="emoji">⚙️</span>
+            <div class="text">Automated workflows</div>
+          </div>
+        </div>
+
+        <div class="cell before">
+          <div class="contentRow">
+            <div class="text">Missed follow-ups</div>
+          </div>
+        </div>
+
+        <div class="cell after">
+          <div class="contentRow">
+            <span class="emoji">⚡</span>
+            <div class="text">Instant responses</div>
+          </div>
+        </div>
+
+        <div class="cell before">
+          <div class="contentRow">
+            <div class="text">Scattered tools</div>
+          </div>
+        </div>
+
+        <div class="cell after">
+          <div class="contentRow">
+            <span class="emoji">🧠</span>
+            <div class="text">Centralized systems</div>
+          </div>
+        </div>
+
+        <div class="cell before">
+          <div class="contentRow">
+            <div class="text">No clear overview</div>
+          </div>
+        </div>
+
+        <div class="cell after">
+          <div class="contentRow">
+            <span class="emoji">👁️</span>
+            <div class="text">Clear visibility</div>
+          </div>
+        </div>
+      </div>
+      
+      <p class="before-after-tagline">Faster execution. Fewer errors. Scalable operations.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="final-cta reveal reveal-scale">
+        <h2>Ready to Automate Your Business?</h2>
+        <p>Most clients start with a free automation audit to identify their biggest time leaks.</p>
+        <p>Let’s identify where automation can save you the most time and money — fast.</p>
+        <a href="book-a-call.html" class="btn btn-primary">Book a Free Automation Call</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq-section">
+    <div class="container">
+      <h2 class="reveal" style="text-align: center;">FAQ</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Why should I go with your agency?</button>
+          <div class="faq-answer">
+            <p>Large agencies sell standardized packages.<br>We work with a small number of clients and build tailored AI automations based on real business processes. That’s where measurable results come from.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">What exactly does Adelvo do?</button>
+          <div class="faq-answer">
+            <p>We design and implement AI automations that reduce manual work, increase speed, and improve decision-making across sales, operations, and internal workflows.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Who is Adelvo a good fit for?</button>
+          <div class="faq-answer">
+            <p>Adelvo works best with founders and teams who already have real processes in place and want to scale without adding more headcount.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">What industries do you work with?</button>
+          <div class="faq-answer">
+            <p>We mainly work with service businesses, e-commerce, real estate, and operations-heavy companies.<br>If processes repeat, AI can automate them.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Do you use off-the-shelf AI tools?</button>
+          <div class="faq-answer">
+            <p>No. We combine proven tools with tailored workflows built around your systems, data, and constraints. No generic setups.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">How long does it take to see results?</button>
+          <div class="faq-answer">
+            <p>First usable automations usually go live within 2–4 weeks, depending on complexity and data access.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Do I need technical knowledge to work with you?</button>
+          <div class="faq-answer">
+            <p>No. We translate business needs into automation. You focus on outcomes, not tools.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">How is this different from hiring a freelancer?</button>
+          <div class="faq-answer">
+            <p>Freelancers deliver tasks.<br>We design end-to-end systems, document them, and ensure they work in real operations.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">What happens after the automation is live?</button>
+          <div class="faq-answer">
+            <p>We monitor, optimize, and adapt the system as your business evolves. AI is not set-and-forget.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Is this a one-time project or an ongoing collaboration?</button>
+          <div class="faq-answer">
+            <p>Both are possible. Some clients start with a single workflow, others work with us long-term.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Still have a question?</button>
+          <div class="faq-answer">
+            <p>Contact us at info@adelvo-global.ae</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="use-cases.html">Use Cases</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="book-a-call.html">Book a Free Call</a></li>
+          <li><a href="legal/privacy.html">Privacy Policy</a></li>
+          <li><a href="legal/imprint.html">Imprint</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@adelvo-global.ae">info@adelvo-global.ae</a></li>
+          <li>Available for consultation</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2026 Adelvo Global. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

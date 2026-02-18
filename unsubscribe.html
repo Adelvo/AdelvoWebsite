@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unsubscribe | Adelvo</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root {
+      --bg: #eef4ff;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #4338ca;
+      --primary-hover: #3730a3;
+      --border: #dbe4ff;
+      --success: #047857;
+      --error: #b91c1c;
+      --radius: 14px;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, #dbe7ff 0%, rgba(219, 231, 255, 0) 48%),
+        linear-gradient(180deg, #f5f8ff 0%, var(--bg) 100%);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 1.7rem;
+      line-height: 1.2;
+    }
+
+    p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .email {
+      margin: 0 0 20px;
+      padding: 10px 12px;
+      background: #f8faff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      word-break: break-all;
+      font-weight: 600;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 12px 18px;
+      cursor: pointer;
+      transition: background-color 160ms ease, transform 120ms ease;
+    }
+
+    button:hover {
+      background: var(--primary-hover);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.72;
+      transform: none;
+    }
+
+    .status {
+      margin-top: 16px;
+      min-height: 1.4em;
+      font-weight: 600;
+    }
+
+    .status.success {
+      color: var(--success);
+    }
+
+    .status.error {
+      color: var(--error);
+    }
+  </style>
+</head>
+<body>
+  <main class="card" aria-live="polite">
+    <h1>Newsletter Unsubscribe</h1>
+    <p>Please confirm that you want to unsubscribe this email address from the Adelvo newsletter:</p>
+    <div id="emailDisplay" class="email"></div>
+    <div class="actions">
+      <button id="confirmBtn" type="button">Confirm Unsubscribe</button>
+    </div>
+    <div id="status" class="status" role="status"></div>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var HOMEPAGE_URL = "https://adelvo.com/";
+      var WEBHOOK_URL = "https://n8n.srv1235858.hstgr.cloud/webhook/UnsubsribeAdelvoNewsletter";
+
+      var emailDisplay = document.getElementById("emailDisplay");
+      var confirmBtn = document.getElementById("confirmBtn");
+      var statusEl = document.getElementById("status");
+
+      function redirectHome() {
+        window.location.replace(HOMEPAGE_URL);
+      }
+
+      function getEmailFromQuery() {
+        var params = new URLSearchParams(window.location.search);
+        var email = params.get("email");
+        if (!email) return "";
+        return email.trim();
+      }
+
+      function isValidEmail(email) {
+        if (!email) return false;
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      function setStatus(message, type) {
+        statusEl.textContent = message || "";
+        statusEl.className = "status" + (type ? " " + type : "");
+      }
+
+      var email = getEmailFromQuery();
+
+      if (!isValidEmail(email)) {
+        redirectHome();
+        return;
+      }
+
+      emailDisplay.textContent = email;
+
+      confirmBtn.addEventListener("click", function () {
+        if (!isValidEmail(email)) {
+          setStatus("Invalid unsubscribe request.", "error");
+          return;
+        }
+
+        confirmBtn.disabled = true;
+        setStatus("Processing your request...", "");
+
+        fetch(WEBHOOK_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            Email: email
+          })
+        })
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error("Webhook request failed");
+            }
+            setStatus("You have successfully unsubscribed.", "success");
+            confirmBtn.style.display = "none";
+          })
+          .catch(function () {
+            setStatus("We could not process your request right now. Please try again.", "error");
+            confirmBtn.disabled = false;
+          });
+      });
+    })();
+  </script>
+</body>
+</html>

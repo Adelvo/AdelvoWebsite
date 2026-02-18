@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Adelvo - AI automation built for clarity, efficiency, and reliable outcomes.">
+  <title>About - Adelvo</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    :root {
+      --about-bg: #030508;
+      --about-card: #0b0f19;
+      --about-line: rgba(102, 252, 241, 0.2);
+    }
+    .about-page {
+      background: var(--about-bg);
+      color: #e5e7eb;
+      font-family: var(--font-family);
+    }
+    .about-page h1,
+    .about-page h2,
+    .about-page h3,
+    .about-page h4 {
+      color: #fff;
+    }
+    .about-page .section {
+      padding: clamp(3rem, 6vw, 4.75rem) 0;
+    }
+    /* Hero */
+    .about-hero {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(80% 80% at 60% 20%, rgba(102,252,241,0.08), transparent 60%), var(--about-bg);
+    }
+    .about-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.85) 100%);
+      z-index: 0;
+    }
+    .about-hero .container {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .about-label {
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #66fcf1;
+      font-weight: 700;
+    }
+    .about-subheadline {
+      max-width: 760px;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+    .hero-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(102,252,241,0.45), transparent);
+      margin-top: 1.25rem;
+      border: none;
+    }
+    /* About main */
+    .about-main {
+      display: grid;
+      gap: clamp(1.5rem, 3vw, 2.5rem);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      align-items: start;
+    }
+    .about-text {
+      display: grid;
+      gap: 1rem;
+    }
+    .about-text p {
+      margin: 0;
+      color: #cbd5e1;
+      line-height: 1.7;
+    }
+    .about-text ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+    .about-icons {
+      display: grid;
+      gap: 0.9rem;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    .icon-card {
+      background: var(--about-card);
+      border: 1px solid var(--about-line);
+      border-radius: 0.85rem;
+      padding: 1rem;
+      display: grid;
+      gap: 0.4rem;
+      align-items: start;
+    }
+    .icon-circle {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.75rem;
+      display: grid;
+      place-items: center;
+      background: rgba(102, 252, 241, 0.12);
+      color: #66fcf1;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    /* Divider */
+    .soft-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(102,252,241,0.25), transparent);
+      margin: clamp(2rem, 5vw, 3rem) 0;
+      border: none;
+    }
+    /* Founder */
+    .founder {
+      display: grid;
+      gap: clamp(1.5rem, 3vw, 2rem);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      align-items: start;
+    }
+    .founder-portrait {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      background: radial-gradient(80% 80% at 50% 20%, rgba(102,252,241,0.12), rgba(0,0,0,0.85));
+      min-height: 320px;
+      display: grid;
+      place-items: center;
+      color: #66fcf1;
+      font-size: 1.4rem;
+      border: 1px solid var(--about-line);
+    }
+    .founder-card {
+      background: var(--about-card);
+      border: 1px solid var(--about-line);
+      border-radius: 1rem;
+      padding: clamp(1.5rem, 3vw, 2rem);
+      display: grid;
+      gap: 0.9rem;
+    }
+    .founder-card p {
+      margin: 0;
+      color: #cbd5e1;
+      line-height: 1.65;
+    }
+    .founder-name {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .founder-name::before {
+      content: "";
+      width: 2px;
+      height: 1.5rem;
+      background: #66fcf1;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    /* Principles */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .principle-card {
+      background: var(--about-card);
+      border: 1px solid var(--about-line);
+      border-radius: 0.85rem;
+      padding: 1rem;
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+    .principle-card .icon-circle {
+      width: 2.3rem;
+      height: 2.3rem;
+      border-radius: 0.7rem;
+      font-size: 1rem;
+    }
+    /* CTA */
+    .about-cta {
+      background: var(--about-card);
+      border: 1px solid var(--about-line);
+      border-radius: 1rem;
+      padding: clamp(1.8rem, 4vw, 2.4rem);
+      text-align: center;
+      display: grid;
+      gap: 0.75rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .about-cta p {
+      margin: 0;
+      color: #cbd5e1;
+    }
+    /* Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+    .is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (max-width: 768px) {
+      .about-page .section {
+        padding: 2.5rem 0;
+      }
+      .about-hero .container {
+        gap: 0.8rem;
+      }
+      .about-icons {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body class="about-page">
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="../index.html" class="logo">Adelvo</a>
+        <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+        <nav>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="use-cases.html">Use Cases</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="book-a-call.html" class="btn btn-primary" style="margin: 0;">Book a Free Call</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="section about-hero">
+    <div class="container">
+      <p class="about-label reveal">ABOUT</p>
+      <h1 class="reveal">About Adelvo</h1>
+      <p class="about-subheadline reveal">Adelvo builds clear, reliable automation systems so teams can operate with less manual work and more consistent outcomes.</p>
+      <hr class="hero-divider reveal" aria-hidden="true">
+    </div>
+  </section>
+
+  <!-- About Adelvo -->
+  <section class="section">
+    <div class="container">
+      <div class="about-main">
+        <div class="about-text reveal">
+          <h2>About Adelvo</h2>
+          <p>Adelvo designs and implements AI-driven automation systems for sales, operations, and content workflows.</p>
+          <p>The focus is not on tools or trends, but on clear, reliable systems that reduce manual work and create consistent outcomes.</p>
+          <p>Adelvo works with businesses where processes have grown complex, fragmented, or inefficient. Typical challenges include lead handling, outreach, internal coordination, reporting, and content production. These workflows are translated into structured automations that integrate seamlessly into existing operations.</p>
+          <p>The approach is pragmatic and execution-focused:</p>
+          <ul>
+            <li>real business use cases instead of experiments</li>
+            <li>measurable impact instead of vague promises</li>
+            <li>automation that supports teams, not replaces them</li>
+          </ul>
+          <p>Adelvo is built for companies that value clarity, efficiency, and long-term scalability in how their work gets done.</p>
+        </div>
+        <div class="about-icons reveal" id="about-icons"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="soft-divider" aria-hidden="true"></div>
+
+  <!-- Founder -->
+  <section class="section">
+    <div class="container">
+      <div class="founder">
+        <div class="founder-portrait reveal" aria-hidden="true">
+          <span>Founder</span>
+        </div>
+        <div class="founder-card reveal">
+          <h2>About the Founder</h2>
+          <div class="founder-name">Kris</div>
+          <p>Adelvo was founded by Kris, a systems-driven builder with a strong focus on structure, automation, and execution.</p>
+          <p>Kris works at the intersection of business logic and technical implementation. Over time, he has designed and built automation workflows across sales, operations, and content — always with the same principle in mind: most operational problems are not people problems, but system problems.</p>
+          <p>Rather than relying on abstract strategy or buzzwords, his work focuses on:</p>
+          <ul>
+            <li>breaking down real workflows into clear logic</li>
+            <li>identifying bottlenecks that slow teams down</li>
+            <li>building automation systems that are practical, maintainable, and measurable</li>
+          </ul>
+          <p>Kris is deeply involved in the design and implementation of each solution, ensuring that every automation aligns with actual business needs and can be used reliably in day-to-day operations.</p>
+          <p>Adelvo reflects this mindset: structured, focused, and built to create lasting operational leverage rather than short-term experimentation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principles -->
+  <section class="section">
+    <div class="container">
+      <h2 class="reveal">Working Principles</h2>
+      <div class="principles-grid" id="principles-grid"></div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section">
+    <div class="container about-cta reveal">
+      <h2>Want to work with Adelvo?</h2>
+      <p>Tell us about your workflows, and we’ll map the automation that brings clarity and consistency.</p>
+      <div class="cta-row" style="justify-content:center;">
+        <a href="book-a-call.html" class="btn btn-primary">Book a call</a>
+        <a href="mailto:info@adelvo-global.ae" class="btn btn-secondary">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq-section">
+    <div class="container">
+      <h2 class="reveal" style="text-align: center;">FAQ</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Why should I go with your agency?</button>
+          <div class="faq-answer">
+            <p>Large agencies sell standardized packages.<br>We work with a small number of clients and build tailored AI automations based on real business processes. That’s where measurable results come from.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">What exactly does Adelvo do?</button>
+          <div class="faq-answer">
+            <p>We design and implement AI automations that reduce manual work, increase speed, and improve decision-making across sales, operations, and internal workflows.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Who is Adelvo a good fit for?</button>
+          <div class="faq-answer">
+            <p>Adelvo works best with founders and teams who already have real processes in place and want to scale without adding more headcount.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">What industries do you work with?</button>
+          <div class="faq-answer">
+            <p>We mainly work with service businesses, e-commerce, real estate, and operations-heavy companies.<br>If processes repeat, AI can automate them.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Do you use off-the-shelf AI tools?</button>
+          <div class="faq-answer">
+            <p>No. We combine proven tools with tailored workflows built around your systems, data, and constraints. No generic setups.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">How long does it take to see results?</button>
+          <div class="faq-answer">
+            <p>First usable automations usually go live within 2–4 weeks, depending on complexity and data access.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Do I need technical knowledge to work with you?</button>
+          <div class="faq-answer">
+            <p>No. We translate business needs into automation. You focus on outcomes, not tools.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">How is this different from hiring a freelancer?</button>
+          <div class="faq-answer">
+            <p>Freelancers deliver tasks.<br>We design end-to-end systems, document them, and ensure they work in real operations.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">What happens after the automation is live?</button>
+          <div class="faq-answer">
+            <p>We monitor, optimize, and adapt the system as your business evolves. AI is not set-and-forget.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Is this a one-time project or an ongoing collaboration?</button>
+          <div class="faq-answer">
+            <p>Both are possible. Some clients start with a single workflow, others work with us long-term.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Still have a question?</button>
+          <div class="faq-answer">
+            <p>Contact us at info@adelvo-global.ae</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="use-cases.html">Use Cases</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="book-a-call.html">Book a Free Call</a></li>
+          <li><a href="legal/privacy.html">Privacy Policy</a></li>
+          <li><a href="legal/imprint.html">Imprint</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@adelvo-global.ae">info@adelvo-global.ae</a></li>
+          <li>Available for consultation</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2026 Adelvo Global. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const aboutIconData = [
+      { icon: '⚙️', title: 'Automation' },
+      { icon: '🧭', title: 'Systems' },
+      { icon: '⏱️', title: 'Efficiency' },
+      { icon: '📈', title: 'Scalability' }
+    ];
+
+    const principlesData = [
+      { icon: '📐', title: 'Structure over chaos' },
+      { icon: '🚀', title: 'Execution over theory' },
+      { icon: '🛠️', title: 'Systems over manual work' },
+      { icon: '🔍', title: 'Clarity over complexity' }
+    ];
+
+    function renderIconCards() {
+      const wrap = document.getElementById('about-icons');
+      wrap.innerHTML = aboutIconData.map(item => `
+        <div class="icon-card reveal">
+          <div class="icon-circle">${item.icon}</div>
+          <h3 style="margin:0;">${item.title}</h3>
+        </div>
+      `).join('');
+    }
+
+    function renderPrinciples() {
+      const wrap = document.getElementById('principles-grid');
+      wrap.innerHTML = principlesData.map(item => `
+        <div class="principle-card reveal">
+          <div class="icon-circle">${item.icon}</div>
+          <div>${item.title}</div>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderIconCards();
+      renderPrinciples();
+    });
+  </script>
+  <script src="../script.js"></script>
+</body>
+</html>

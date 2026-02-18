@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Real Automation Use Cases - Adelvo Agency">
+  <title>Use Cases - Adelvo Agency</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .use-cases-page {
+      background: #000;
+      color: #e5e7eb;
+      font-family: var(--font-family);
+    }
+    .use-cases-page .section {
+      padding: clamp(2.75rem, 5vw, 4.5rem) 0;
+    }
+    .use-cases-page h1,
+    .use-cases-page h2,
+    .use-cases-page h3,
+    .use-cases-page h4 {
+      color: #fff;
+    }
+    .usecases-hero-section {
+      padding-top: clamp(1.25rem, 3vh, 2.25rem);
+      padding-bottom: clamp(2rem, 5vw, 3.5rem);
+      position: relative;
+      overflow: hidden;
+      min-height: 70vh;
+      background-image: url("/public/images/usecases-hero-bg.svg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .usecases-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .usecases-hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+    }
+    .usecases-hero-content {
+      position: relative;
+      z-index: 1;
+      background: transparent;
+    }
+    .hero {
+      display: grid;
+      gap: 1.1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: left;
+      align-items: center;
+      max-height: 75vh;
+    }
+    .hero-content {
+      display: grid;
+      gap: 0.8rem;
+      max-width: 720px;
+    }
+    .hero .subheading {
+      margin: 0;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+    .hero-ctas {
+      justify-content: flex-start;
+      gap: 0.9rem;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      justify-content: flex-start;
+      opacity: 0.85;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(102, 252, 241, 0.08);
+      color: #66fcf1;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .badge .icon {
+      font-size: 1rem;
+    }
+    .usecases-hero-section .container {
+      position: relative;
+      z-index: 1;
+    }
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .how-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      background: #0b0f19;
+      border: 1px solid rgba(102, 252, 241, 0.18);
+      border-radius: 0.85rem;
+      padding: 1.5rem;
+    }
+    .how-card {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 0.65rem;
+      padding: 1rem;
+    }
+    .how-icon,
+    .card-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      display: grid;
+      place-items: center;
+      border-radius: 0.75rem;
+      background: rgba(102, 252, 241, 0.12);
+      color: #66fcf1;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+    .usecase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: clamp(1rem, 2vw, 1.5rem);
+    }
+    .usecase-card {
+      background: #0b0f19;
+      border: 1px solid rgba(102, 252, 241, 0.18);
+      border-radius: 0.95rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: transform 220ms ease, box-shadow 220ms ease;
+    }
+    .usecase-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+    .usecase-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .usecase-title {
+      margin: 0;
+      font-size: 1.25rem;
+    }
+    .usecase-tagline {
+      color: #cbd5e1;
+      font-size: 0.98rem;
+      margin: 0;
+      line-height: 1.5;
+    }
+    .sub-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(102, 252, 241, 0.14);
+      border-radius: 0.75rem;
+      padding: 0.9rem 1rem;
+      display: grid;
+      gap: 0.4rem;
+    }
+    .sub-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-weight: 700;
+      color: #66fcf1;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+    }
+    .sub-label .icon {
+      font-size: 1rem;
+    }
+    .sub-list {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: #d1d5db;
+      display: grid;
+      gap: 0.2rem;
+    }
+    .workflow-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .workflow-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #e5e7eb;
+      font-size: 0.9rem;
+      border: 1px solid rgba(102, 252, 241, 0.16);
+    }
+    .card-cta {
+      margin-top: 0.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #66fcf1;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .card-cta:hover {
+      color: #45a29e;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .benefit-card {
+      background: #0b0f19;
+      border: 1px solid rgba(102, 252, 241, 0.16);
+      border-radius: 0.8rem;
+      padding: 1rem;
+      display: flex;
+      gap: 0.65rem;
+      align-items: center;
+    }
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .timeline-step {
+      background: #0b0f19;
+      border: 1px solid rgba(102, 252, 241, 0.16);
+      border-radius: 0.8rem;
+      padding: 1rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .step-label {
+      font-weight: 700;
+      color: #66fcf1;
+      margin-bottom: 0.25rem;
+    }
+    .final-cta {
+      text-align: center;
+      background: #0b0f19;
+      border: 1px solid rgba(102, 252, 241, 0.18);
+      border-radius: 0.9rem;
+      padding: clamp(2rem, 5vw, 2.75rem);
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      gap: 1rem;
+    }
+    .final-cta p {
+      color: #cbd5e1;
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .grid-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .grid-header p {
+      margin: 0;
+      color: #cbd5e1;
+      max-width: 520px;
+    }
+    .label-eyebrow {
+      font-size: 0.9rem;
+      color: #66fcf1;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+    @media (min-width: 1024px) {
+      .hero {
+        text-align: left;
+      }
+    }
+    @media (max-width: 768px) {
+      .hero {
+        text-align: left;
+        gap: 0.85rem;
+        max-height: none;
+      }
+      .hero-content {
+        gap: 0.65rem;
+      }
+      .hero-ctas {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+      .hero-badges {
+        justify-content: flex-start;
+      }
+      .usecase-card {
+        padding: 1.25rem;
+      }
+      .sub-list {
+        padding-left: 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="use-cases-page">
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="../index.html" class="logo">Adelvo</a>
+        <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+        <nav>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="use-cases.html">Use Cases</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="book-a-call.html" class="btn btn-primary" style="margin: 0;">Book a Free Call</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="section usecases-hero-section">
+    <div class="usecases-hero-bg" aria-hidden="true"></div>
+    <div class="container hero usecases-hero-content reveal">
+      <div class="hero-content">
+        <p class="label-eyebrow">USE CASES</p>
+        <h1>Real Automation Use Cases</h1>
+        <p class="subheading">Simple breakdown: the problem, the automation we deploy, and the measurable result.</p>
+        <div class="cta-row hero-ctas">
+          <a href="book-a-call.html" class="btn btn-primary">Book a call</a>
+          <a href="book-a-call.html" class="btn btn-secondary">Talk to us</a>
+        </div>
+        <div class="hero-badges">
+          <span class="badge"><span class="icon">⚡</span>Faster workflows</span>
+          <span class="badge"><span class="icon">🛠️</span>Less manual work</span>
+          <span class="badge"><span class="icon">🎯</span>More consistent output</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section">
+    <div class="container reveal">
+      <div class="grid-header">
+        <div>
+          <p class="label-eyebrow">How it works</p>
+          <h2>From bottleneck to measurable impact</h2>
+        </div>
+        <p>Every automation follows the same playbook: find the slow spot, automate the steps, and measure the result.</p>
+      </div>
+      <div class="how-strip">
+        <div class="how-card">
+          <div class="how-icon">🔍</div>
+          <div>
+            <h3 style="margin:0;">Identify bottleneck</h3>
+            <p style="margin:0;color:#cbd5e1;">Spot the repetitive tasks and failure points.</p>
+          </div>
+        </div>
+        <div class="how-card">
+          <div class="how-icon">⚙️</div>
+          <div>
+            <h3 style="margin:0;">Automate the workflow</h3>
+            <p style="margin:0;color:#cbd5e1;">Design AI + logic to handle the entire flow.</p>
+          </div>
+        </div>
+        <div class="how-card">
+          <div class="how-icon">📊</div>
+          <div>
+            <h3 style="margin:0;">Measure impact</h3>
+            <p style="margin:0;color:#cbd5e1;">Track speed, accuracy, and consistency gains.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use cases -->
+  <section class="section">
+    <div class="container reveal">
+      <div class="grid-header">
+        <div>
+          <p class="label-eyebrow">Core automations</p>
+          <h2>Problem → Automation → Result</h2>
+        </div>
+        <p>Three proven automations that non-technical teams can roll out quickly.</p>
+      </div>
+      <div class="usecase-grid" id="usecase-grid"></div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="section">
+    <div class="container reveal">
+      <div class="grid-header">
+        <div>
+          <p class="label-eyebrow">What you get</p>
+          <h2>Operational gains you can see</h2>
+        </div>
+        <p>Standardized automations that reduce manual work and increase reliability.</p>
+      </div>
+      <div class="benefits-grid" id="benefits-grid"></div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section">
+    <div class="container reveal">
+      <div class="grid-header">
+        <div>
+          <p class="label-eyebrow">Implementation</p>
+          <h2>4-week delivery cadence</h2>
+        </div>
+        <p>Clear steps with checkpoints and QA before deployment.</p>
+      </div>
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section">
+    <div class="container final-cta reveal">
+      <h2>Want one of these built for your business?</h2>
+      <p>We’ll scope the workflow, design the automation, and deploy with monitoring and iteration.</p>
+      <div class="cta-row" style="justify-content:center;">
+        <a href="book-a-call.html" class="btn btn-primary">Book a call</a>
+        <a href="mailto:info@adelvo-global.ae" class="btn btn-secondary">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq-section">
+    <div class="container">
+      <h2 class="reveal" style="text-align: center;">FAQ</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Why should I go with your agency?</button>
+          <div class="faq-answer">
+            <p>Large agencies sell standardized packages.<br>We work with a small number of clients and build tailored AI automations based on real business processes. That’s where measurable results come from.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">What exactly does Adelvo do?</button>
+          <div class="faq-answer">
+            <p>We design and implement AI automations that reduce manual work, increase speed, and improve decision-making across sales, operations, and internal workflows.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Who is Adelvo a good fit for?</button>
+          <div class="faq-answer">
+            <p>Adelvo works best with founders and teams who already have real processes in place and want to scale without adding more headcount.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">What industries do you work with?</button>
+          <div class="faq-answer">
+            <p>We mainly work with service businesses, e-commerce, real estate, and operations-heavy companies.<br>If processes repeat, AI can automate them.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Do you use off-the-shelf AI tools?</button>
+          <div class="faq-answer">
+            <p>No. We combine proven tools with tailored workflows built around your systems, data, and constraints. No generic setups.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">How long does it take to see results?</button>
+          <div class="faq-answer">
+            <p>First usable automations usually go live within 2–4 weeks, depending on complexity and data access.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Do I need technical knowledge to work with you?</button>
+          <div class="faq-answer">
+            <p>No. We translate business needs into automation. You focus on outcomes, not tools.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">How is this different from hiring a freelancer?</button>
+          <div class="faq-answer">
+            <p>Freelancers deliver tasks.<br>We design end-to-end systems, document them, and ensure they work in real operations.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">What happens after the automation is live?</button>
+          <div class="faq-answer">
+            <p>We monitor, optimize, and adapt the system as your business evolves. AI is not set-and-forget.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Is this a one-time project or an ongoing collaboration?</button>
+          <div class="faq-answer">
+            <p>Both are possible. Some clients start with a single workflow, others work with us long-term.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Still have a question?</button>
+          <div class="faq-answer">
+            <p>Contact us at info@adelvo-global.ae</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="use-cases.html">Use Cases</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="book-a-call.html">Book a Free Call</a></li>
+          <li><a href="legal/privacy.html">Privacy Policy</a></li>
+          <li><a href="legal/imprint.html">Imprint</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@adelvo-global.ae">info@adelvo-global.ae</a></li>
+          <li>Available for consultation</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2026 Adelvo Global. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const useCases = [
+      {
+        title: 'AI Phone Assistant',
+        icon: '📞',
+        tagline: 'Answer calls, qualify leads, and document instantly.',
+        problem: [
+          'Missed calls and delayed responses cost leads',
+          'Team time wasted on repetitive questions',
+          'No consistent qualification and documentation'
+        ],
+        solution: [
+          'AI answers calls 24/7, handles FAQs, captures intent',
+          'Qualifies leads with a fixed question flow (budget, timeline, need)',
+          'Creates a structured summary and pushes it to CRM / email / Slack'
+        ],
+        result: [
+          'More captured leads',
+          'Faster response time',
+          'Consistent lead qualification + clean documentation'
+        ],
+        workflow: ['Call', 'Qualify', 'Summary', 'CRM']
+      },
+      {
+        title: 'Cold Outreach Emails',
+        icon: '✉️',
+        tagline: 'Consistent, personalized outreach with reliable follow-up.',
+        problem: [
+          'Outreach is inconsistent and takes too long',
+          'Reps copy/paste without personalization',
+          'No clean follow-up system → lost opportunities'
+        ],
+        solution: [
+          'Automated prospect list ingestion (sheet/CRM)',
+          'AI generates personalized first-line + email body based on role + company signals',
+          'Automated follow-up sequences + reply classification (interested/not now/unsubscribe)'
+        ],
+        result: [
+          'More outreach volume with quality',
+          'Higher reply rate through consistent personalization',
+          'Reliable follow-up without manual chasing'
+        ],
+        workflow: ['Prospect', 'Personalize', 'Send', 'Follow-up']
+      },
+      {
+        title: 'Social Media Script Planning',
+        icon: '🎬',
+        tagline: 'Pattern-based scripting from proven viral references.',
+        problem: [
+          'Content ideas run dry and output becomes random',
+          'No structure → inconsistent posting',
+          'Scripts lack hooks and retention patterns'
+        ],
+        solution: [
+          'Collect references from high-performing viral scripts (manual inputs or a curated list)',
+          'AI extracts patterns: hook style, pacing, structure, CTA, retention elements',
+          'AI generates new original scripts in your topic and brand voice using the proven structure'
+        ],
+        result: [
+          'Faster script production',
+          'More consistent format and posting cadence',
+          'Higher chance of retention because structure is based on proven patterns'
+        ],
+        workflow: ['Reference', 'Pattern', 'Script', 'Calendar']
+      }
+    ];
+
+    const benefits = [
+      { icon: '📑', text: 'Standardized workflows' },
+      { icon: '⏱️', text: 'Less manual work' },
+      { icon: '📞', text: 'Faster lead handling' },
+      { icon: '🧭', text: 'Quality control' },
+      { icon: '📈', text: 'Reporting & visibility' },
+      { icon: '🚀', text: 'Scales without hiring' }
+    ];
+
+    const timeline = [
+      { icon: '🧭', title: 'Discovery', desc: 'Process mapping, goals, and guardrails.' },
+      { icon: '⚙️', title: 'Build', desc: 'Automation, prompts, logic, and integrations.' },
+      { icon: '✅', title: 'Test', desc: 'Edge cases, QA, and reliability checks.' },
+      { icon: '🚀', title: 'Deploy', desc: 'Monitoring, tweaks, and iteration.' }
+    ];
+
+    function buildList(items) {
+      return items.map(item => `<li>${item}</li>`).join('');
+    }
+
+    function renderUseCases() {
+      const grid = document.getElementById('usecase-grid');
+      grid.innerHTML = useCases.map(usecase => `
+        <article class="usecase-card reveal">
+          <div class="usecase-header">
+            <div class="card-icon">${usecase.icon}</div>
+            <div>
+              <h3 class="usecase-title">${usecase.title}</h3>
+              <p class="usecase-tagline">${usecase.tagline}</p>
+            </div>
+          </div>
+          <div class="sub-box">
+            <div class="sub-label"><span class="icon">⚠️</span>Problem</div>
+            <ul class="sub-list">${buildList(usecase.problem)}</ul>
+          </div>
+          <div class="sub-box">
+            <div class="sub-label"><span class="icon">🛠️</span>Automation Solution</div>
+            <ul class="sub-list">${buildList(usecase.solution)}</ul>
+          </div>
+          <div class="sub-box">
+            <div class="sub-label"><span class="icon">📈</span>Result</div>
+            <ul class="sub-list">${buildList(usecase.result)}</ul>
+          </div>
+          <div class="workflow-chips">
+            ${usecase.workflow.map(step => `<span class="workflow-chip">🔗 ${step}</span>`).join('')}
+          </div>
+          <a class="card-cta" href="book-a-call.html">Discuss this use case →</a>
+        </article>
+      `).join('');
+    }
+
+    function renderBenefits() {
+      const grid = document.getElementById('benefits-grid');
+      grid.innerHTML = benefits.map(item => `
+        <div class="benefit-card reveal">
+          <div class="card-icon" aria-hidden="true">${item.icon}</div>
+          <div>${item.text}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderTimeline() {
+      const wrap = document.getElementById('timeline');
+      wrap.innerHTML = timeline.map(step => `
+        <div class="timeline-step reveal">
+          <div class="card-icon" aria-hidden="true">${step.icon}</div>
+          <div>
+            <div class="step-label">${step.title}</div>
+            <p style="margin:0;color:#cbd5e1;">${step.desc}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderUseCases();
+      renderBenefits();
+      renderTimeline();
+    });
+  </script>
+  <script src="../script.js"></script>
+</body>
+</html>
