@@ -1611,6 +1611,7 @@ footer .container {
   .before-after-table {
     width: 100%;
     max-width: 100%;
+    grid-template-columns: 1fr;
     margin: var(--spacing-xl) auto;
   }
   .before-after-table .table-header {
