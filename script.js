@@ -248,10 +248,13 @@ function initChatbot() {
     const candidates = [
       payload.reply,
       payload.response,
+      payload.Answer,
+      payload.answer,
+      payload.Anwer,
+      payload.anwer,
       payload.message,
       payload.output,
       payload.text,
-      payload.answer,
       payload.data
     ];
 
