@@ -1360,6 +1360,12 @@ footer .container {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
+  transition: all var(--transition);
+}
+
+.process-proof-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
 }
 
 .process-proof-card h3 {

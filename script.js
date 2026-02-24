@@ -183,7 +183,7 @@ function initChatbot() {
 
   if (!toggle || !panel || !form || !input || !messages) return;
 
-  const webhookUrl = 'https://n8n.srv1235858.hstgr.cloud/webhook/79d83fd0-2387-4579-a908-0d5c33a70b09';
+  const webhookUrl = 'https://automation.adelvo.com/webhook-test/79d83fd0-2387-4579-a908-0d5c33a70b09';
   const sessionId = getOrCreateSessionId();
   let hasOpened = false;
 
