@@ -183,7 +183,7 @@ function initChatbot() {
 
   if (!toggle || !panel || !form || !input || !messages) return;
 
-  const webhookUrl = 'https://automation.adelvo.com/webhook/79d83fd0-2387-4579-a908-0d5c33a70b09';
+  const webhookUrl = 'https://automation.adelvo.com/webhook/ChatbotAdelvo';
   const sessionId = getOrCreateSessionId();
   const sendButton = form.querySelector('button[type="submit"]');
   let hasOpened = false;
@@ -315,9 +315,13 @@ function initChatbot() {
         }
       }
 
-      pendingMessage.textContent = reply || 'Something went wrong. Please try again.';
+      if (reply) {
+        pendingMessage.textContent = reply;
+      } else {
+        pendingMessage.remove();
+      }
     } catch (error) {
-      pendingMessage.textContent = 'Something went wrong. Please try again.';
+      pendingMessage.remove();
     } finally {
       setPendingState(false);
       input.focus();
