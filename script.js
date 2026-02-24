@@ -185,7 +185,9 @@ function initChatbot() {
 
   const webhookUrl = 'https://automation.adelvo.com/webhook/79d83fd0-2387-4579-a908-0d5c33a70b09';
   const sessionId = getOrCreateSessionId();
+  const sendButton = form.querySelector('button[type="submit"]');
   let hasOpened = false;
+  let isWaitingForResponse = false;
 
   const setOpen = (open) => {
     if (open && !hasOpened) {
@@ -215,6 +217,50 @@ function initChatbot() {
     node.textContent = text;
     messages.appendChild(node);
     messages.scrollTop = messages.scrollHeight;
+    return node;
+  };
+
+  const setPendingState = (pending) => {
+    isWaitingForResponse = pending;
+    input.disabled = pending;
+    if (sendButton) {
+      sendButton.disabled = pending;
+    }
+  };
+
+  const getReplyFromPayload = (payload) => {
+    if (typeof payload === 'string') {
+      return payload.trim();
+    }
+
+    if (Array.isArray(payload)) {
+      for (const item of payload) {
+        const nestedReply = getReplyFromPayload(item);
+        if (nestedReply) return nestedReply;
+      }
+      return '';
+    }
+
+    if (!payload || typeof payload !== 'object') {
+      return '';
+    }
+
+    const candidates = [
+      payload.reply,
+      payload.response,
+      payload.message,
+      payload.output,
+      payload.text,
+      payload.answer,
+      payload.data
+    ];
+
+    for (const candidate of candidates) {
+      const nestedReply = getReplyFromPayload(candidate);
+      if (nestedReply) return nestedReply;
+    }
+
+    return '';
   };
 
   if (!messages.children.length) {
@@ -223,11 +269,15 @@ function initChatbot() {
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
+    if (isWaitingForResponse) return;
+
     const value = input.value.trim();
     if (!value) return;
 
     appendMessage(value, 'user');
     input.value = '';
+    setPendingState(true);
+    const pendingMessage = appendMessage('...', 'bot');
 
     try {
       const response = await fetch(webhookUrl, {
@@ -245,12 +295,29 @@ function initChatbot() {
         throw new Error('Request failed');
       }
 
-      const data = await response.json();
-      console.log('Chatbot response:', data);
-      const reply = typeof data.reply === 'string' ? data.reply : 'Something went wrong. Please try again.';
-      appendMessage(reply, 'bot');
+      const contentType = response.headers.get('content-type') || '';
+      let reply = '';
+
+      if (contentType.includes('application/json')) {
+        const data = await response.json();
+        console.log('Chatbot response:', data);
+        reply = getReplyFromPayload(data);
+      } else {
+        const rawText = await response.text();
+        try {
+          const parsed = JSON.parse(rawText);
+          reply = getReplyFromPayload(parsed);
+        } catch (_) {
+          reply = rawText.trim();
+        }
+      }
+
+      pendingMessage.textContent = reply || 'Something went wrong. Please try again.';
     } catch (error) {
-      appendMessage('Something went wrong. Please try again.', 'bot');
+      pendingMessage.textContent = 'Something went wrong. Please try again.';
+    } finally {
+      setPendingState(false);
+      input.focus();
     }
   });
 }
