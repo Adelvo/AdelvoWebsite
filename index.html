@@ -26,7 +26,8 @@
             <li><a href="#services">Services</a></li>
             <li><a href="#use-cases">Use Cases</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#book-call" class="btn btn-primary" style="margin: 0;">Book a Free Call</a></li>
+            <li><a href="#newsletter-signup">Newsletter</a></li>
+            <li><a href="#free-audit" class="btn btn-primary" style="margin: 0;">Book a Free Call</a></li>
           </ul>
         </nav>
       </div>
@@ -70,8 +71,13 @@
   </section>
 
   <!-- PROCESS PROOF -->
-  <section class="section process-proof-section">
+  <section class="section process-proof-section" id="free-audit">
     <div class="container">
+      <div class="process-proof-header reveal">
+        <h2>Free 1:1 AI Automation Audit</h2>
+        <p class="process-proof-subtitle">Discover where your business is losing time — and how to automate it within 30 days.</p>
+      </div>
+      <div class="calendly-inline-widget" data-url="https://calendly.com/adelvo-global-info/new-meeting?primary_color=4338ca" style="min-width:320px;height:700px;"></div>
       <div class="process-proof-header reveal">
         <h2>How We Automate Your Business — Step by Step</h2>
         <p class="process-proof-subtitle">A proven implementation process focused on real, production-ready systems.</p>
@@ -344,7 +350,7 @@
   </section>
 
   <!-- AUTOMATION DEMO SECTION -->
-  <section class="section" id="book-call">
+  <section class="section" id="newsletter-signup">
     <div class="container">
       <div class="booking-area reveal">
         <div>
@@ -375,7 +381,11 @@
               </select>
             </div>
           </div>
-          <button class="btn btn-primary booking-submit" type="submit">Sign Up</button>
+          <div class="consent-row">
+            <input id="newsletter-consent" name="newsletter_consent" type="checkbox" required>
+            <label for="newsletter-consent">I agree to receive emails from Adelvo, including AI insights, marketing content, and promotional offers. I can unsubscribe at any time.</label>
+          </div>
+          <button class="btn btn-primary booking-submit" type="submit" disabled>Sign Up</button>
           <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
         </form>
       </div>
@@ -495,6 +505,7 @@
     </div>
   </footer>
 
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
   <script src="script.js"></script>
 
   <!-- Chatbot Widget -->

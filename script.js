@@ -131,8 +131,19 @@ function initBookingForm() {
   const bookingForm = document.getElementById('booking-form');
   const formStatus = document.getElementById('form-status');
   const submitButton = bookingForm ? bookingForm.querySelector('button[type="submit"]') : null;
+  const consentCheckbox = bookingForm ? bookingForm.querySelector('#newsletter-consent') : null;
 
   if (!bookingForm) return;
+
+  const syncSubmitState = () => {
+    if (!submitButton) return;
+    submitButton.disabled = !consentCheckbox || !consentCheckbox.checked;
+  };
+
+  if (consentCheckbox) {
+    consentCheckbox.addEventListener('change', syncSubmitState);
+  }
+  syncSubmitState();
 
   bookingForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -150,7 +161,7 @@ function initBookingForm() {
 
     const formData = new FormData(bookingForm);
     try {
-      const response = await fetch('https://n8n.srv1235858.hstgr.cloud/webhook-test/85f8b530-2fba-4f39-9bff-d8d0231ffa59', {
+      const response = await fetch('https://automation.adelvo.com/webhook/AdelvoNewsletter', {
         method: 'POST',
         body: formData
       });
@@ -160,15 +171,14 @@ function initBookingForm() {
       }
 
       bookingForm.reset();
+      syncSubmitState();
       formStatus.textContent = 'Thank you, we will get back to you.';
       formStatus.setAttribute('data-state', 'success');
     } catch (error) {
       formStatus.textContent = 'Submission failed. Please try again.';
       formStatus.setAttribute('data-state', 'error');
     } finally {
-      if (submitButton) {
-        submitButton.disabled = false;
-      }
+      syncSubmitState();
     }
   });
 }

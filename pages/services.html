@@ -233,6 +233,18 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: clamp(1.25rem, 3vw, 1.75rem);
     }
+    .calendly-section {
+      margin-bottom: clamp(1.5rem, 3vw, 2rem);
+    }
+    .calendly-inline-widget {
+      width: 100%;
+      min-width: 320px;
+      height: 700px;
+      border-radius: 0.85rem;
+      overflow: hidden;
+      border: 1px solid rgba(102, 252, 241, 0.16);
+      background: #0b0f19;
+    }
     .process-card {
       background: #0b0f19;
       border: 1px solid rgba(102, 252, 241, 0.15);
@@ -421,6 +433,9 @@
       .audience-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+      .calendly-inline-widget {
+        height: 740px;
+      }
       .outcomes-list {
         grid-template-columns: 1fr;
       }
@@ -455,6 +470,9 @@
       }
       .final-cta {
         padding: 2rem;
+      }
+      .calendly-inline-widget {
+        height: 760px;
       }
     }
   </style>
@@ -567,7 +585,8 @@
 
   <section class="section">
     <div class="container">
-      <h2 class="reveal" style="color: #FFFFFF; margin-bottom: 2rem;">How Our Service Works</h2>
+      <h2 class="reveal" style="color: #FFFFFF; margin-bottom: 1.5rem;">How We Automate Your Business</h2>
+      <div class="calendly-inline-widget" data-url="https://calendly.com/adelvo-global-info/new-meeting?primary_color=4338ca" style="min-width:320px;height:700px;"></div>
       <div class="process-steps">
         <div class="process-card reveal">
           <div class="process-label">🔍 Week 1 — Process Audit</div>
@@ -819,6 +838,7 @@
     </div>
   </footer>
 
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
   <script src="../script.js"></script>
 </body>
 </html>
