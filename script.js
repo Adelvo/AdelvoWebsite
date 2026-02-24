@@ -246,6 +246,7 @@ function initChatbot() {
     }
 
     const candidates = [
+      payload.Reply,
       payload.reply,
       payload.response,
       payload.Answer,
